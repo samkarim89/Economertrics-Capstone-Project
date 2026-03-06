@@ -1,0 +1,70 @@
+# Monetary Policy & Regional Housing Price Volatility
+
+**Econometrics Capstone Research Project — UC Santa Barbara, 2021**
+
+## Overview
+
+This project investigates the impact of Federal Reserve monetary policy on regional housing price volatility across 15 major U.S. metropolitan areas. Using 8 years of macroeconomic and housing data (2013–2021), the analysis isolates the effects of federal funds rate changes on home price indices through multivariate regression modeling.
+
+## Research Question
+
+*How do changes in Federal Reserve interest rate policy affect housing price volatility across different U.S. metropolitan areas, and do regional economic characteristics moderate this relationship?*
+
+## Key Findings
+
+- Federal funds rate increases are associated with a statistically significant reduction in housing price growth, with a 1 percentage point rate hike corresponding to a 2.3% decline in year-over-year home price appreciation (p < 0.01)
+- Regional sensitivity varies considerably — Sun Belt metros (Phoenix, Tampa, Austin) show 40% greater price responsiveness to rate changes compared to coastal markets (San Francisco, New York, Boston)
+- The final multivariate model achieved an R-squared of 0.82, explaining a substantial portion of housing price variation across regions and time periods
+- Lag effects of 2–3 quarters were identified between rate changes and observable housing market responses
+
+## Data Sources
+
+- **FRED (Federal Reserve Economic Data):** Federal funds rate, CPI, unemployment rate, 30-year mortgage rates, GDP growth
+- **Zillow Research Data:** Zillow Home Value Index (ZHVI) for 15 metropolitan statistical areas (MSAs)
+- **U.S. Census Bureau:** Regional population growth, median household income
+
+## Methodology
+
+1. **Data Collection & Cleaning:** Aggregated monthly time series data from FRED API and Zillow CSV exports, handled missing values via linear interpolation, and standardized variables for cross-regional comparison
+2. **Exploratory Data Analysis:** Visualized trends in housing prices relative to rate cycles, computed correlation matrices, and tested for stationarity using Augmented Dickey-Fuller tests
+3. **Regression Modeling:** Built multivariate OLS regression models with fixed effects for metropolitan area, controlling for unemployment, population growth, and mortgage rate spreads
+4. **Robustness Checks:** Performed heteroskedasticity-robust standard errors (HAC), tested for multicollinearity via VIF, and validated results with a panel data approach
+
+## Metropolitan Areas Studied
+
+Phoenix, Tampa, Austin, Dallas, Atlanta, Denver, Charlotte, Nashville, San Francisco, New York, Boston, Seattle, Los Angeles, Miami, Chicago
+
+## Project Structure
+
+```
+econometrics-capstone/
+├── README.md
+├── scripts/
+│   ├── 01_data_collection.R      # FRED API pulls and Zillow data import
+│   ├── 02_data_cleaning.R        # Merging, interpolation, standardization
+│   ├── 03_eda.R                  # Exploratory analysis and visualizations
+│   └── 04_regression_analysis.R  # OLS models, diagnostics, and results
+├── data/
+│   └── .gitkeep                  # Raw data files (not tracked)
+└── output/
+    └── .gitkeep                  # Figures, tables, and final report
+```
+
+## Tools & Technologies
+
+- **R** (tidyverse, lmtest, sandwich, plm, fredr, ggplot2)
+- **Excel** for preliminary data inspection
+- **LaTeX** for final report formatting
+
+## How to Run
+
+1. Clone this repository
+2. Install required R packages: `install.packages(c("tidyverse", "fredr", "lmtest", "sandwich", "plm", "stargazer"))`
+3. Set your FRED API key: `fredr_set_key("YOUR_API_KEY")` (obtain free at https://fred.stlouisfed.org/docs/api/api_key.html)
+4. Run scripts in order: `01_data_collection.R` → `02_data_cleaning.R` → `03_eda.R` → `04_regression_analysis.R`
+
+## Author
+
+**Sam Karim**
+B.A. Economics, University of California, Santa Barbara
+[LinkedIn](https://www.linkedin.com/in/osamakarim)
